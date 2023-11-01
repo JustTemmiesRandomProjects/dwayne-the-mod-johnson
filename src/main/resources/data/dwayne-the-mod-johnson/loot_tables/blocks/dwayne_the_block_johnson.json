@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "dwayne-the-mod-johnson:dwayne_the_block_johnson",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}
