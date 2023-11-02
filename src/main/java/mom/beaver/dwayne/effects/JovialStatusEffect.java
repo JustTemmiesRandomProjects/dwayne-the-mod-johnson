@@ -3,6 +3,8 @@ package mom.beaver.dwayne.effects;
 import mom.beaver.dwayne.DwayneTheModJohnson;
 import mom.beaver.dwayne.registry.RegisterSounds;
 import mom.beaver.dwayne.util.IEntityDataSaver;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.MovingSoundInstance;
 import net.minecraft.client.sound.Sound;
@@ -42,12 +44,27 @@ public class JovialStatusEffect extends StatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof PlayerEntity) {
+            System.out.println(amplifier);
             NbtCompound nbt = ((IEntityDataSaver) entity).getPersistentData();
-            int play_duration = nbt.getInt("playing-jovial-duration");
 
-            if (play_duration > 3580 || play_duration <= 0) {
-                ((PlayerEntity) entity).playSound(RegisterSounds.JOVIAL_SONG_EVENT, SoundCategory.MASTER, 1.0F, 1);
-                nbt.putInt("playing-jovial-duration", 1);
+            int play_duration = nbt.getInt("playing-jovial-duration");
+            int saved_amplifier = nbt.getInt("playing-jovial-amplifier");
+
+            if (amplifier != saved_amplifier) {
+                if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
+                    MinecraftClient.getInstance().getSoundManager().stopSounds(RegisterSounds.JOVIAL_SONG_ID, SoundCategory.MASTER);
+                    ((PlayerEntity) entity).playSound(RegisterSounds.JOVIAL_SONG_EVENT, SoundCategory.MASTER, 0.1F, (float) amplifier / 5 + 1);
+                }
+
+                nbt.putInt("playing-jovial-duration", 2);
+                nbt.putInt("playing-jovial-amplifier", amplifier);
+            } else if (play_duration > 3580 || play_duration <= 0) {
+                if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
+                    ((PlayerEntity) entity).playSound(RegisterSounds.JOVIAL_SONG_EVENT, SoundCategory.MASTER, 0.1F, (float) amplifier / 5 + 1);
+                }
+
+                nbt.putInt("playing-jovial-duration", 2);
+                nbt.putInt("playing-jovial-amplifier", amplifier);
             } else {
                 play_duration ++;
                 nbt.putInt("playing-jovial-duration", play_duration);

@@ -3,9 +3,9 @@
 	"id": "dwayne-the-mod-johnson",
 	"version": "${version}",
 	"name": "Dwayne The Mod Johnson",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "boom",
 	"authors": [
-		"Me!"
+		"JustTemmie"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -17,6 +17,12 @@
 	"entrypoints": {
 		"main": [
 			"mom.beaver.dwayne.DwayneTheModJohnson"
+		],
+		"client": [
+			"mom.beaver.dwayne.DwayneTheModJohnsonClient"
+		],
+		"server": [
+			"mom.beaver.dwayne.DwayneTheModJohnsonServer"
 		],
 		"fabric-datagen": [
 			"mom.beaver.dwayne.DwayneTheModJohnsonDataGenerator"

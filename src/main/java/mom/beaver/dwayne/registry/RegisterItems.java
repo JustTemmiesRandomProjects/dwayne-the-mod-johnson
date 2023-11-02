@@ -3,11 +3,14 @@ package mom.beaver.dwayne.registry;
 import mom.beaver.dwayne.DwayneTheModJohnson;
 import mom.beaver.dwayne.items.DwayneTheItemJohnson;
 import mom.beaver.dwayne.items.blocks.DwayneTheBlockJohnson;
+import mom.beaver.dwayne.items.blocks.FreddyKalasCorruptithar;
+import mom.beaver.dwayne.items.blocks.blockEntities.FreddyKalasCorruptitharEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -18,7 +21,14 @@ public class RegisterItems {
 
     private static final Item DWAYNE_THE_ITEM_JOHNSON = new DwayneTheItemJohnson(new FabricItemSettings());
     private static final DwayneTheBlockJohnson DWAYNE_THE_BLOCK_JOHNSON = new DwayneTheBlockJohnson(FabricBlockSettings.create().strength(1.5f).requiresTool());
-//    private static final Item BEAVER_FUEL = new BeaverFuelItem(new FabricItemSettings());
+    private static final FreddyKalasCorruptithar FREDDY_KALAS_CORRUPTITHAR = new FreddyKalasCorruptithar(FabricBlockSettings.create().strength(3.5f));
+    public static final BlockEntityType<FreddyKalasCorruptitharEntity> FREDDY_KALAS_CORRUPTITHAR_ENTITY = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE,
+            new Identifier(DwayneTheModJohnson.MOD_ID, "freddy_kalas_corruptithar_entity"),
+            FabricBlockEntityTypeBuilder.create(FreddyKalasCorruptitharEntity::new, FREDDY_KALAS_CORRUPTITHAR).build()
+    );
+
+    //    private static final Item BEAVER_FUEL = new BeaverFuelItem(new FabricItemSettings());
 //    private static final BeaverSoundsItem BEAVER_SOUNDS = new BeaverSoundsItem(new FabricItemSettings().maxCount(1));
 //    private static final Block BEAVER_BLOCK = new Block(FabricBlockSettings.create().strength(1.5f));
 //    private static final BeaverBlock BEAVER_BLOCK = new BeaverBlock(FabricBlockSettings.create().strength(1.5f).requiresTool());
@@ -31,10 +41,15 @@ public class RegisterItems {
                 registerItemAndBlock("dwayne_the_block_johnson", DWAYNE_THE_BLOCK_JOHNSON)
         };
 
+        Item[] freddy_group_entries = {
+                registerItemAndBlock("freddy_kalas_corruptithar", FREDDY_KALAS_CORRUPTITHAR)
+        };
+
         // register fuel
 //        FuelRegistry.INSTANCE.add(BEAVER_FUEL, 1);
 
-//        // item group
+
+
         Registry.register(Registries.ITEM_GROUP, new Identifier(DwayneTheModJohnson.MOD_ID, "dwayne_group"),
                 FabricItemGroup.builder()
                         .icon(() -> new ItemStack(DWAYNE_THE_ITEM_JOHNSON))
@@ -43,8 +58,18 @@ public class RegisterItems {
                             for (Item item : dwayne_group_entries) {
                                 entries.add(item);
                             }
-                        })
-                        .build()
+                        }).build()
+        );
+
+        Registry.register(Registries.ITEM_GROUP, new Identifier(DwayneTheModJohnson.MOD_ID, "freddy_group"),
+                FabricItemGroup.builder()
+                        .icon(() -> new ItemStack(FREDDY_KALAS_CORRUPTITHAR))
+                        .displayName(Text.translatable("Freddy Kalas"))
+                        .entries((context, entries) -> {
+                            for (Item item : freddy_group_entries) {
+                                entries.add(item);
+                            }
+                        }).build()
         );
     }
 

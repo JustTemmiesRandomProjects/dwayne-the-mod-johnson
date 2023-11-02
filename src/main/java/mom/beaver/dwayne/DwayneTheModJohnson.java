@@ -1,8 +1,6 @@
 package mom.beaver.dwayne;
 
 import mom.beaver.dwayne.registry.*;
-import mom.beaver.dwayne.registry.subRegisters.RegisterOnTick;
-import mom.beaver.dwayne.registry.subRegisters.RegisterOnWorldJoin;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -26,8 +24,6 @@ public class DwayneTheModJohnson implements ModInitializer {
 		RegisterSounds.register();
 		RegisterItems.register();
 		RegisterStatusEffects.register();
-
-		RegisterOnTick.register();
-//		RegisterOnWorldJoin.register();
 	}
 }
+

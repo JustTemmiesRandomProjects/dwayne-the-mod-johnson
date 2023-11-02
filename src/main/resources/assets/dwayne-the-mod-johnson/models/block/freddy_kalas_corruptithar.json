@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "dwayne-the-mod-johnson:block/freddy_kalas_corruptithar"
+  }
+}

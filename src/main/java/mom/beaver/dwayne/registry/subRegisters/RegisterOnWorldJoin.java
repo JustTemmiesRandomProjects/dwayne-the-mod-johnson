@@ -19,24 +19,22 @@ import java.util.UUID;
 public class RegisterOnWorldJoin {
     public static void register() {
         ClientPlayConnectionEvents.JOIN.register((handler, packetSender, client) -> {
-            System.out.println(handler);
-            System.out.println("joining..");
+            System.out.println("joining.. server");
             UUID uuid = client.getSession().getUuidOrNull();
-            World world = handler.getWorld();
-            if (uuid != null && world != null) {
-                PlayerEntity player = Objects.requireNonNullElse(world.getPlayerByUuid(uuid), null);
-
-
-                StatusEffectInstance effectInstance = player.getStatusEffect(RegisterStatusEffects.JOVIAL);
-
-                System.out.println(effectInstance);
-                if (effectInstance != null) {
-                    DwayneTheModJohnson.LOGGER.info("hey! why u not jovial >:(");
-                    player.playSound(RegisterSounds.JOVIAL_SONG_EVENT, SoundCategory.MASTER, 1.3F, 1);
-                    NbtCompound nbt = ((IEntityDataSaver) player).getPersistentData();
-                    nbt.putInt("playing-jovial-duration", 1);
-                }
-            }
+//            if (uuid != null && world != null) {
+//                PlayerEntity player = Objects.requireNonNullElse(world.getPlayerByUuid(uuid), null);
+//
+//
+//                StatusEffectInstance effectInstance = player.getStatusEffect(RegisterStatusEffects.JOVIAL);
+//
+//                System.out.println(effectInstance);
+//                if (effectInstance != null) {
+//                    DwayneTheModJohnson.LOGGER.info("hey! why u not jovial >:(");
+//                    player.playSound(RegisterSounds.JOVIAL_SONG_EVENT, SoundCategory.MASTER, 1.3F, 1);
+//                    NbtCompound nbt = ((IEntityDataSaver) player).getPersistentData();
+//                    nbt.putInt("playing-jovial-duration", 1);
+//                }
+//            }
         });
     }
 }
