@@ -2,8 +2,6 @@ package mom.beaver.dwayne.effects;
 
 import mom.beaver.dwayne.DwayneTheModJohnson;
 import mom.beaver.dwayne.registry.RegisterSounds;
-import mom.beaver.dwayne.registry.RegisterStatusEffects;
-import mom.beaver.dwayne.sounds.JovialSoundInstance;
 import mom.beaver.dwayne.util.IEntityDataSaver;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.MovingSoundInstance;
@@ -27,7 +25,6 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
 
-import static mom.beaver.dwayne.DwayneTheModJohnson.JOVIAL_SOUND_INSTANCE;
 
 public class JovialStatusEffect extends StatusEffect {
     public JovialStatusEffect() {
@@ -45,36 +42,16 @@ public class JovialStatusEffect extends StatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof PlayerEntity) {
-
-//            MinecraftClient.getInstance().getSoundManager().isPlaying()
-//            MinecraftClient.getInstance().getSoundManager().;
-            System.out.println(JOVIAL_SOUND_INSTANCE.isDone());
-
             NbtCompound nbt = ((IEntityDataSaver) entity).getPersistentData();
-            boolean playing = nbt.getBoolean("playing-jovial");
-            if (!playing) {
-                JOVIAL_SOUND_INSTANCE.canPlay();
+            int play_duration = nbt.getInt("playing-jovial-duration");
+
+            if (play_duration > 3580 || play_duration <= 0) {
                 ((PlayerEntity) entity).playSound(RegisterSounds.JOVIAL_SONG_EVENT, SoundCategory.MASTER, 1.0F, 1);
-                nbt.putBoolean("playing-jovial", true);
+                nbt.putInt("playing-jovial-duration", 1);
+            } else {
+                play_duration ++;
+                nbt.putInt("playing-jovial-duration", play_duration);
             }
         }
     }
-
-    @Override
-    public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
-        if (entity instanceof PlayerEntity) {
-            NbtCompound nbt = ((IEntityDataSaver) entity).getPersistentData();
-            boolean playing = nbt.getBoolean("playing-jovial");
-            nbt.putBoolean("playing-jovial", false);
-
-            MinecraftClient.getInstance().getSoundManager().stopSounds(RegisterSounds.JOVIAL_SONG_ID, SoundCategory.MASTER);
-        }
-    }
-
-//    @Override
-//    public void applyInstantEffect(LivingEntity entity, int amplifier) {
-//        if (entity instanceof PlayerEntity) {
-//            ((PlayerEntity) entity).playSound(RegisterSounds.JOVIAL_SONG_EVENT, SoundCategory.MASTER, 1.0F, 1);
-//        }
-//    }
 }

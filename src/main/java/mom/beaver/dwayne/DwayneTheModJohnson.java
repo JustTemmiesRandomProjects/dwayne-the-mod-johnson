@@ -1,15 +1,10 @@
 package mom.beaver.dwayne;
 
-import mom.beaver.dwayne.registry.RegisterItems;
-import mom.beaver.dwayne.registry.RegisterOnTick;
-import mom.beaver.dwayne.registry.RegisterSounds;
-import mom.beaver.dwayne.registry.RegisterStatusEffects;
-import mom.beaver.dwayne.sounds.JovialSoundInstance;
+import mom.beaver.dwayne.registry.*;
+import mom.beaver.dwayne.registry.subRegisters.RegisterOnTick;
+import mom.beaver.dwayne.registry.subRegisters.RegisterOnWorldJoin;
 import net.fabricmc.api.ModInitializer;
 
-import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.world.tick.WorldTickScheduler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +14,6 @@ public class DwayneTheModJohnson implements ModInitializer {
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static JovialSoundInstance JOVIAL_SOUND_INSTANCE = new JovialSoundInstance(RegisterSounds.JOVIAL_SONG_EVENT, SoundCategory.MASTER);
 
 	@Override
 	public void onInitialize() {
@@ -32,6 +26,8 @@ public class DwayneTheModJohnson implements ModInitializer {
 		RegisterSounds.register();
 		RegisterItems.register();
 		RegisterStatusEffects.register();
+
 		RegisterOnTick.register();
+//		RegisterOnWorldJoin.register();
 	}
 }

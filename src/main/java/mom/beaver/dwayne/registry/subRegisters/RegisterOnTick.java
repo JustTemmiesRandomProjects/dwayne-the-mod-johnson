@@ -1,12 +1,16 @@
-package mom.beaver.dwayne.registry;
+package mom.beaver.dwayne.registry.subRegisters;
 
 import mom.beaver.dwayne.DwayneTheModJohnson;
+import mom.beaver.dwayne.registry.RegisterSounds;
+import mom.beaver.dwayne.registry.RegisterStatusEffects;
+import mom.beaver.dwayne.util.IEntityDataSaver;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.event.client.ClientTickCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.SoundManager;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.world.tick.WorldTickScheduler;
 import net.minecraft.world.timer.Timer;
@@ -22,8 +26,18 @@ public class RegisterOnTick {
                 PlayerEntity player = Objects.requireNonNull(client.world.getPlayerByUuid(uuid));
                 StatusEffectInstance effectInstance = player.getStatusEffect(RegisterStatusEffects.JOVIAL);
 
-                if (effectInstance == null || effectInstance.getDuration() <= 1) {
-                    MinecraftClient.getInstance().getSoundManager().stopSounds(RegisterSounds.JOVIAL_SONG_ID, SoundCategory.MASTER);
+                if (effectInstance == null) {
+                    NbtCompound nbt = ((IEntityDataSaver) player).getPersistentData();
+                    nbt.putInt("playing-jovial-duration", -1);
+                }
+
+                if (player.age == 50) {
+                    if (effectInstance != null) {
+                        DwayneTheModJohnson.LOGGER.info("hey! why u not jovial >:(");
+                        player.playSound(RegisterSounds.JOVIAL_SONG_EVENT, SoundCategory.MASTER, 1.3F, 1);
+                        NbtCompound nbt = ((IEntityDataSaver) player).getPersistentData();
+                        nbt.putInt("playing-jovial-duration", 1);
+                    }
                 }
             }
         });
