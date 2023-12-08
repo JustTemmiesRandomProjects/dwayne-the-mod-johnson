@@ -44,7 +44,6 @@ public class JovialStatusEffect extends StatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof PlayerEntity) {
-            System.out.println(amplifier);
             NbtCompound nbt = ((IEntityDataSaver) entity).getPersistentData();
 
             int play_duration = nbt.getInt("playing-jovial-duration");
@@ -53,14 +52,15 @@ public class JovialStatusEffect extends StatusEffect {
             if (amplifier != saved_amplifier) {
                 if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
                     MinecraftClient.getInstance().getSoundManager().stopSounds(RegisterSounds.JOVIAL_SONG_ID, SoundCategory.MASTER);
-                    ((PlayerEntity) entity).playSound(RegisterSounds.JOVIAL_SONG_EVENT, SoundCategory.MASTER, 0.1F, (float) amplifier / 5 + 1);
+                    playJovial((PlayerEntity) entity, amplifier);
                 }
 
                 nbt.putInt("playing-jovial-duration", 2);
                 nbt.putInt("playing-jovial-amplifier", amplifier);
             } else if (play_duration > 3580 || play_duration <= 0) {
                 if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-                    ((PlayerEntity) entity).playSound(RegisterSounds.JOVIAL_SONG_EVENT, SoundCategory.MASTER, 0.1F, (float) amplifier / 5 + 1);
+                    MinecraftClient.getInstance().getSoundManager().stopSounds(RegisterSounds.JOVIAL_SONG_ID, SoundCategory.MASTER);
+                    playJovial((PlayerEntity) entity, amplifier);
                 }
 
                 nbt.putInt("playing-jovial-duration", 2);
@@ -69,6 +69,16 @@ public class JovialStatusEffect extends StatusEffect {
                 play_duration ++;
                 nbt.putInt("playing-jovial-duration", play_duration);
             }
+        }
+    }
+
+    private static void playJovial(PlayerEntity entity, int amplifier) {
+        if ( amplifier == -128) {
+            ((PlayerEntity) entity).playSound(RegisterSounds.JOVIAL_SONG_EVENT, SoundCategory.MASTER, 0.38F, 0.75f);
+        } else if ( amplifier == -127 ) {
+            ((PlayerEntity) entity).playSound(RegisterSounds.JOVIAL_SONG_EVENT, SoundCategory.MASTER, 0.34F, 0.88f);
+        } else {
+            ((PlayerEntity) entity).playSound(RegisterSounds.JOVIAL_SONG_EVENT, SoundCategory.MASTER, 0.3F, (float) (amplifier  * 0.2f) + 1);
         }
     }
 }

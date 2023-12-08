@@ -24,6 +24,8 @@ public class DwayneTheModJohnson implements ModInitializer {
 		RegisterSounds.register();
 		RegisterItems.register();
 		RegisterStatusEffects.register();
+		ModPotions.registerPotions();
+		ModPotions.registerPotionRecipes();
 	}
 }
 

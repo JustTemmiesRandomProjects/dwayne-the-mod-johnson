@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class FreddyKalasCorruptitharEntity extends BlockEntity {
-    private static final int SCAN_RADIUS = 64;  // The radius to scan for players.
+    private static final int SCAN_RADIUS = 32;  // The radius to scan for players.
     private static final int SCAN_INTERVAL = 200;  // Scan for players every x ticks
 
     public FreddyKalasCorruptitharEntity(BlockPos pos, BlockState state) {

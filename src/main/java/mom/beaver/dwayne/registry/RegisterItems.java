@@ -2,6 +2,7 @@ package mom.beaver.dwayne.registry;
 
 import mom.beaver.dwayne.DwayneTheModJohnson;
 import mom.beaver.dwayne.items.DwayneTheItemJohnson;
+import mom.beaver.dwayne.items.FreddyKalasItem;
 import mom.beaver.dwayne.items.blocks.DwayneTheBlockJohnson;
 import mom.beaver.dwayne.items.blocks.FreddyKalasCorruptithar;
 import mom.beaver.dwayne.items.blocks.blockEntities.FreddyKalasCorruptitharEntity;
@@ -19,7 +20,8 @@ import net.minecraft.util.Identifier;
 
 public class RegisterItems {
 
-    private static final Item DWAYNE_THE_ITEM_JOHNSON = new DwayneTheItemJohnson(new FabricItemSettings());
+    public static final Item DWAYNE_THE_ITEM_JOHNSON = new DwayneTheItemJohnson(new FabricItemSettings());
+    public static final Item FREDDY_KALAS_ITEM = new FreddyKalasItem(new FabricItemSettings());
     private static final DwayneTheBlockJohnson DWAYNE_THE_BLOCK_JOHNSON = new DwayneTheBlockJohnson(FabricBlockSettings.create().strength(1.5f).requiresTool());
     private static final FreddyKalasCorruptithar FREDDY_KALAS_CORRUPTITHAR = new FreddyKalasCorruptithar(FabricBlockSettings.create().strength(3.5f));
     public static final BlockEntityType<FreddyKalasCorruptitharEntity> FREDDY_KALAS_CORRUPTITHAR_ENTITY = Registry.register(
@@ -42,6 +44,7 @@ public class RegisterItems {
         };
 
         Item[] freddy_group_entries = {
+                registerItem("freddy_kalas_item", FREDDY_KALAS_ITEM),
                 registerItemAndBlock("freddy_kalas_corruptithar", FREDDY_KALAS_CORRUPTITHAR)
         };
 

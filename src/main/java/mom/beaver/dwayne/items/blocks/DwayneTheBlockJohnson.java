@@ -23,7 +23,7 @@ public class DwayneTheBlockJohnson extends Block {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
             float pitch = (float)(Math.random() / 2 + 0.75);
-            world.playSound(null, pos, RegisterSounds.VINE_BOOM_EVENT, SoundCategory.BLOCKS, 1.2f, pitch);
+            world.playSound(null, pos, RegisterSounds.VINE_BOOM_EVENT, SoundCategory.BLOCKS, 0.6f, pitch);
         }
 
         return ActionResult.SUCCESS;
