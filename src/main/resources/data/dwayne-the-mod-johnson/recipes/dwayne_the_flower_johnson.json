@@ -1,0 +1,15 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dwayne-the-mod-johnson:dwayne_the_item_johnson"
+    },
+    {
+      "item": "minecraft:poppy"
+    }
+  ],
+  "result": {
+    "item": "dwayne-the-mod-johnson:dwayne_the_flower_johnson",
+    "count": 1
+  }
+}

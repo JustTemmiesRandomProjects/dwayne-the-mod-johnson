@@ -1,7 +1,7 @@
 {
-  "item.dwayne-the-mod-johnson.dwayne_the_item_johnson": "Dwayne The Item Johnson",
+  "item.dwayne-the-mod-johnson.dwayne_the_item_johnson": "Dwayne the Item Johnson",
   "item.dwayne-the-mod-johnson.freddy_kalas_item": "Freddy Kalas Fragment",
-  "item.dwayne-the-mod-johnson.evil_freddy_kalas_item": "Evil Freddy Kalas",
+  "item.dwayne-the-mod-johnson.evil_freddy_kalas_item": "Eddy Mas",
   "item.temmies-mod.dwayne_the_item_johnson.tooltip": "*boom*",
 
   "item.minecraft.potion.effect.jovial_potion":  "Potion of Jovial",
@@ -20,7 +20,18 @@
   "item.minecraft.lingering_potion.effect.jovial_potion_-1":  "Buggy Item, don't use",
   "item.minecraft.lingering_potion.effect.jovial_potion_-2":  "Buggy Item, don't use",
 
-  "block.dwayne-the-mod-johnson.dwayne_the_block_johnson": "Dwayne The Block Johnson",
+  "item.minecraft.potion.effect.dwayne_the_potion_johnson":  "Dwayne the Potion Johnson",
+  "item.minecraft.potion.effect.dwayne_the_potion_johnson_strong":  "Dwayne the Potion Johnson",
+  "item.minecraft.potion.effect.dwayne_the_potion_johnson_long":  "Dwayne the Potion Johnson",
+  "item.minecraft.splash_potion.effect.dwayne_the_potion_johnson":  "Dwayne the Splash Potion Johnson",
+  "item.minecraft.splash_potion.effect.dwayne_the_potion_johnson_strong":  "Dwayne the Splash Potion Johnson",
+  "item.minecraft.splash_potion.effect.dwayne_the_potion_johnson_long":  "Dwayne the Splash Potion Johnson",
+  "item.minecraft.lingering_potion.effect.dwayne_the_potion_johnson":  "Dwayne the Lingering Potion Johnson",
+  "item.minecraft.lingering_potion.effect.dwayne_the_potion_johnson_strong":  "Dwayne the Lingering Potion Johnson",
+  "item.minecraft.lingering_potion.effect.dwayne_the_potion_johnson_long":  "Dwayne the Lingering Potion Johnson",
+
+  "block.dwayne-the-mod-johnson.dwayne_the_block_johnson": "Dwayne the Block Johnson",
+  "block.dwayne-the-mod-johnson.dwayne_the_flower_johnson": "Dwayne the Flower Johnson",
   "block.dwayne-the-mod-johnson.freddy_kalas_corruptithar": "Freddy Kalas Corruptithar",
 
   "subtitles.dwayne-the-mod-johnson.vine-boom": "Pass deg",

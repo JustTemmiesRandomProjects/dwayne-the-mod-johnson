@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/flower_pot_cross",
+  "textures": {
+    "plant": "dwayne-the-mod-johnson:block/dwayne_the_flower_johnson"
+  }
+}

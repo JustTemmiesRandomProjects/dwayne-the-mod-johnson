@@ -5,14 +5,22 @@ import mom.beaver.dwayne.items.DwayneTheItemJohnson;
 import mom.beaver.dwayne.items.EvilFreddyKalasItem;
 import mom.beaver.dwayne.items.FreddyKalasItem;
 import mom.beaver.dwayne.items.blocks.DwayneTheBlockJohnson;
+import mom.beaver.dwayne.items.blocks.DwayneTheFlowerJohnson;
+import mom.beaver.dwayne.items.blocks.DwayneThePottedFlowerJohnson;
 import mom.beaver.dwayne.items.blocks.FreddyKalasCorruptithar;
 import mom.beaver.dwayne.items.blocks.blockEntities.FreddyKalasCorruptitharEntity;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.FlowerBlock;
+import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -20,31 +28,45 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RegisterItems {
 
     public static final Item DWAYNE_THE_ITEM_JOHNSON = new DwayneTheItemJohnson(new FabricItemSettings().rarity(Rarity.UNCOMMON));
     public static final Item FREDDY_KALAS_ITEM = new FreddyKalasItem(new FabricItemSettings().rarity(Rarity.RARE));
     public static final Item EVIL_FREDDY_KALAS_ITEM = new EvilFreddyKalasItem(new FabricItemSettings().rarity(Rarity.EPIC).fireproof());
 
-    private static final DwayneTheBlockJohnson DWAYNE_THE_BLOCK_JOHNSON = new DwayneTheBlockJohnson(FabricBlockSettings.create().strength(1.5f).requiresTool());
-    private static final FreddyKalasCorruptithar FREDDY_KALAS_CORRUPTITHAR = new FreddyKalasCorruptithar(FabricBlockSettings.create().strength(3.5f));
+    public static final DwayneTheBlockJohnson DWAYNE_THE_BLOCK_JOHNSON = new DwayneTheBlockJohnson(FabricBlockSettings.create().strength(1.5f).requiresTool());
+    public static final FreddyKalasCorruptithar FREDDY_KALAS_CORRUPTITHAR = new FreddyKalasCorruptithar(FabricBlockSettings.create().strength(3.5f));
+//    public static final DwayneTheFlowerJohnson DWAYNE_THE_FLOWER_JOHNSON = new DwayneTheFlowerJohnson(FabricBlockSettings.copyOf(Blocks.POPPY).strength(0.0F).nonOpaque());
+//    public static final BlockItem DWAYNE_THE_POTTED_JOHNSON = new BlockItem(DwayneThePottedFlowerJohnson.POTTED_DWAYNE, new Item.Settings());
+
+
     public static final BlockEntityType<FreddyKalasCorruptitharEntity> FREDDY_KALAS_CORRUPTITHAR_ENTITY = Registry.register(
             Registries.BLOCK_ENTITY_TYPE,
             new Identifier(DwayneTheModJohnson.MOD_ID, "freddy_kalas_corruptithar_entity"),
             FabricBlockEntityTypeBuilder.create(FreddyKalasCorruptitharEntity::new, FREDDY_KALAS_CORRUPTITHAR).build()
     );
 
-    //    private static final Item BEAVER_FUEL = new BeaverFuelItem(new FabricItemSettings());
-//    private static final BeaverSoundsItem BEAVER_SOUNDS = new BeaverSoundsItem(new FabricItemSettings().maxCount(1));
-//    private static final Block BEAVER_BLOCK = new Block(FabricBlockSettings.create().strength(1.5f));
-//    private static final BeaverBlock BEAVER_BLOCK = new BeaverBlock(FabricBlockSettings.create().strength(1.5f).requiresTool());
+    public static Map<String, Item> block_items = new HashMap<>();
+
+    public static Block DWAYNE_THE_FLOWER_JOHNSON_BLOCK = new FlowerBlock(StatusEffects.HASTE, 20,
+            FabricBlockSettings.copy(Blocks.POPPY).nonOpaque().noCollision());
 
     public static void register() {
+
+        Item DWAYNE_THE_FLOWER_JOHNSON = registerItemAndBlock("dwayne_the_flower_johnson", DWAYNE_THE_FLOWER_JOHNSON_BLOCK, new FabricItemSettings());
+        Block DWAYNE_THE_POTTED_JOHNSON_BLOCK = registerBlock("dwayne_the_potted_flower_johnson", new FlowerPotBlock(DWAYNE_THE_FLOWER_JOHNSON_BLOCK, FabricBlockSettings.copy(Blocks.POTTED_POPPY)));
+
+        BlockRenderLayerMap.INSTANCE.putBlock(DWAYNE_THE_FLOWER_JOHNSON_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(DWAYNE_THE_POTTED_JOHNSON_BLOCK, RenderLayer.getCutout());
 
         // register items and blocks
         Item[] dwayne_group_entries = {
                 registerItem("dwayne_the_item_johnson", DWAYNE_THE_ITEM_JOHNSON),
-                registerItemAndBlock("dwayne_the_block_johnson", DWAYNE_THE_BLOCK_JOHNSON, new FabricItemSettings().rarity(Rarity.EPIC))
+                registerItemAndBlock("dwayne_the_block_johnson", DWAYNE_THE_BLOCK_JOHNSON, new FabricItemSettings().rarity(Rarity.EPIC)),
+                DWAYNE_THE_FLOWER_JOHNSON
         };
 
         Item[] freddy_group_entries = {
@@ -86,12 +108,14 @@ public class RegisterItems {
         return item;
     }
 
-    private static void registerBlock(String ID, Block block) {
+    private static Block registerBlock(String ID, Block block) {
         Registry.register(Registries.BLOCK, new Identifier(DwayneTheModJohnson.MOD_ID, ID), block);
+        return block;
     }
 
     private static Item registerItemAndBlock(String ID, Block block, FabricItemSettings itemSettings) {
         Item item = new BlockItem(block, itemSettings);
+        block_items.put(ID, item);
         Registry.register(Registries.BLOCK, new Identifier(DwayneTheModJohnson.MOD_ID, ID), block);
         Registry.register(Registries.ITEM, new Identifier(DwayneTheModJohnson.MOD_ID, ID), item);
         return item;
