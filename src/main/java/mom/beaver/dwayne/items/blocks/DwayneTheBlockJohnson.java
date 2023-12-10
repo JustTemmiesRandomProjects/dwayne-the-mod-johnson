@@ -1,6 +1,8 @@
 package mom.beaver.dwayne.items.blocks;
 
 import mom.beaver.dwayne.registry.RegisterSounds;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
@@ -44,11 +46,8 @@ public class DwayneTheBlockJohnson extends Block {
     }
 
     @Override
+    @Environment(EnvType.SERVER)
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
-        if (world.isClient) {
-            return;
-        }
-
         boolean bl = state.get(POWERED);
         int power = world.getReceivedRedstonePower(pos);
         if (bl != power >= 1) {

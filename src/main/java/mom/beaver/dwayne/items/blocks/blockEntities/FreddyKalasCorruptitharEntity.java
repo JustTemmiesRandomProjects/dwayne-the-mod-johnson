@@ -26,11 +26,13 @@ public class FreddyKalasCorruptitharEntity extends BlockEntity {
     public static void tick(World world, BlockPos pos, BlockState state, FreddyKalasCorruptitharEntity be) {
         if (RegisterOnServerTick.jovial_corruptithar_counter >= SCAN_INTERVAL) {
             if (world != null && !world.isClient) {
-                ServerWorld serverWorld = (ServerWorld) world;
-                List<PlayerEntity> players = serverWorld.getEntitiesByClass(PlayerEntity.class, getScanBox(pos), player -> true);
+                if ( !world.isReceivingRedstonePower(pos) ) {
+                    ServerWorld serverWorld = (ServerWorld) world;
+                    List<PlayerEntity> players = serverWorld.getEntitiesByClass(PlayerEntity.class, getScanBox(pos), player -> true);
 
-                for (PlayerEntity player : players) {
-                    player.addStatusEffect(new StatusEffectInstance(RegisterStatusEffects.JOVIAL, SCAN_INTERVAL * 2 + 5, 0));
+                    for (PlayerEntity player : players) {
+                        player.addStatusEffect(new StatusEffectInstance(RegisterStatusEffects.JOVIAL, SCAN_INTERVAL * 2 + 5, 0));
+                    }
                 }
 
                 RegisterOnServerTick.jovial_corruptithar_counter = 0;
