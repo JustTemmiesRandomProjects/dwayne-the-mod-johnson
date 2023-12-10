@@ -18,7 +18,6 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 
@@ -44,30 +43,24 @@ public class JovialStatusEffect extends StatusEffect {
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity instanceof PlayerEntity) {
-            NbtCompound nbt = ((IEntityDataSaver) entity).getPersistentData();
-
-            int play_duration = nbt.getInt("playing-jovial-duration");
-            int saved_amplifier = nbt.getInt("playing-jovial-amplifier");
-
-            if (amplifier != saved_amplifier) {
+            if (amplifier != DwayneTheModJohnson.SAVED_AMPLIFIER) {
                 if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
                     MinecraftClient.getInstance().getSoundManager().stopSounds(RegisterSounds.JOVIAL_SONG_ID, SoundCategory.MASTER);
                     playJovial((PlayerEntity) entity, amplifier);
                 }
+                DwayneTheModJohnson.TICKS_PLAYED = 2;
+                DwayneTheModJohnson.SAVED_AMPLIFIER = amplifier;
 
-                nbt.putInt("playing-jovial-duration", 2);
-                nbt.putInt("playing-jovial-amplifier", amplifier);
-            } else if (play_duration > 3580 || play_duration <= 0) {
+            } else if (DwayneTheModJohnson.TICKS_PLAYED > 3580 || DwayneTheModJohnson.TICKS_PLAYED <= 0) {
                 if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
                     MinecraftClient.getInstance().getSoundManager().stopSounds(RegisterSounds.JOVIAL_SONG_ID, SoundCategory.MASTER);
                     playJovial((PlayerEntity) entity, amplifier);
                 }
-
-                nbt.putInt("playing-jovial-duration", 2);
-                nbt.putInt("playing-jovial-amplifier", amplifier);
+                DwayneTheModJohnson.TICKS_PLAYED = 2;
+                DwayneTheModJohnson.SAVED_AMPLIFIER = amplifier;
             } else {
-                play_duration ++;
-                nbt.putInt("playing-jovial-duration", play_duration);
+                DwayneTheModJohnson.TICKS_PLAYED ++;
+                System.out.println("increasing tick count!");
             }
         }
     }

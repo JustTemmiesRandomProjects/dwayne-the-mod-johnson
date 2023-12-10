@@ -1,0 +1,17 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "TTT",
+    "TTT",
+    "TTT"
+  ],
+  "key": {
+    "T": {
+      "item": "dwayne-the-mod-johnson:dwayne_the_item_johnson"
+    }
+  },
+  "result": {
+    "item": "dwayne-the-mod-johnson:dwayne_the_block_johnson",
+    "count": 1
+  }
+}

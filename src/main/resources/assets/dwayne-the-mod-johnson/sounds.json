@@ -10,6 +10,18 @@
     "sounds": [
       "dwayne-the-mod-johnson:jovial-song"
     ]
+  },
+  "freddy-kalas": {
+    "subtitle": "subtitles.dwayne-the-mod-johnson.freddy-kalas",
+    "sounds": [
+      "dwayne-the-mod-johnson:freddy-kalas"
+    ]
+  },
+  "evil-freddy-kalas": {
+    "subtitle": "subtitles.dwayne-the-mod-johnson.evil-freddy-kalas",
+    "sounds": [
+      "dwayne-the-mod-johnson:freddy-kalas"
+    ]
   }
 }
 

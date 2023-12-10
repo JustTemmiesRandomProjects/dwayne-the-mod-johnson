@@ -2,6 +2,7 @@ package mom.beaver.dwayne.registry;
 
 import mom.beaver.dwayne.DwayneTheModJohnson;
 import mom.beaver.dwayne.items.DwayneTheItemJohnson;
+import mom.beaver.dwayne.items.EvilFreddyKalasItem;
 import mom.beaver.dwayne.items.FreddyKalasItem;
 import mom.beaver.dwayne.items.blocks.DwayneTheBlockJohnson;
 import mom.beaver.dwayne.items.blocks.FreddyKalasCorruptithar;
@@ -17,11 +18,14 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 
 public class RegisterItems {
 
-    public static final Item DWAYNE_THE_ITEM_JOHNSON = new DwayneTheItemJohnson(new FabricItemSettings());
-    public static final Item FREDDY_KALAS_ITEM = new FreddyKalasItem(new FabricItemSettings());
+    public static final Item DWAYNE_THE_ITEM_JOHNSON = new DwayneTheItemJohnson(new FabricItemSettings().rarity(Rarity.UNCOMMON));
+    public static final Item FREDDY_KALAS_ITEM = new FreddyKalasItem(new FabricItemSettings().rarity(Rarity.RARE));
+    public static final Item EVIL_FREDDY_KALAS_ITEM = new EvilFreddyKalasItem(new FabricItemSettings().rarity(Rarity.EPIC).fireproof());
+
     private static final DwayneTheBlockJohnson DWAYNE_THE_BLOCK_JOHNSON = new DwayneTheBlockJohnson(FabricBlockSettings.create().strength(1.5f).requiresTool());
     private static final FreddyKalasCorruptithar FREDDY_KALAS_CORRUPTITHAR = new FreddyKalasCorruptithar(FabricBlockSettings.create().strength(3.5f));
     public static final BlockEntityType<FreddyKalasCorruptitharEntity> FREDDY_KALAS_CORRUPTITHAR_ENTITY = Registry.register(
@@ -40,12 +44,13 @@ public class RegisterItems {
         // register items and blocks
         Item[] dwayne_group_entries = {
                 registerItem("dwayne_the_item_johnson", DWAYNE_THE_ITEM_JOHNSON),
-                registerItemAndBlock("dwayne_the_block_johnson", DWAYNE_THE_BLOCK_JOHNSON)
+                registerItemAndBlock("dwayne_the_block_johnson", DWAYNE_THE_BLOCK_JOHNSON, new FabricItemSettings().rarity(Rarity.EPIC))
         };
 
         Item[] freddy_group_entries = {
                 registerItem("freddy_kalas_item", FREDDY_KALAS_ITEM),
-                registerItemAndBlock("freddy_kalas_corruptithar", FREDDY_KALAS_CORRUPTITHAR)
+                registerItem("evil_freddy_kalas_item", EVIL_FREDDY_KALAS_ITEM),
+                registerItemAndBlock("freddy_kalas_corruptithar", FREDDY_KALAS_CORRUPTITHAR, new FabricItemSettings().rarity(Rarity.EPIC))
         };
 
         // register fuel
@@ -85,8 +90,8 @@ public class RegisterItems {
         Registry.register(Registries.BLOCK, new Identifier(DwayneTheModJohnson.MOD_ID, ID), block);
     }
 
-    private static Item registerItemAndBlock(String ID, Block block) {
-        Item item = new BlockItem(block, new FabricItemSettings());
+    private static Item registerItemAndBlock(String ID, Block block, FabricItemSettings itemSettings) {
+        Item item = new BlockItem(block, itemSettings);
         Registry.register(Registries.BLOCK, new Identifier(DwayneTheModJohnson.MOD_ID, ID), block);
         Registry.register(Registries.ITEM, new Identifier(DwayneTheModJohnson.MOD_ID, ID), item);
         return item;

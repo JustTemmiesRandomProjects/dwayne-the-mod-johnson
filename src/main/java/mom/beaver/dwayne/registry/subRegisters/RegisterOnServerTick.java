@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
@@ -24,16 +23,6 @@ public class RegisterOnServerTick {
     public static void register() {
         ServerTickEvents.END_SERVER_TICK.register((server) -> {
             if (server != null) {
-                // do NBT data stuff if people aren't affected by jovial anymore
-                for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
-                    StatusEffectInstance effectInstance = player.getStatusEffect(RegisterStatusEffects.JOVIAL);
-
-                    if (effectInstance == null) {
-                        NbtCompound nbt = ((IEntityDataSaver) player).getPersistentData();
-                        nbt.putInt("playing-jovial-duration", -1);
-                    }
-                }
-
                 // increase the global corruptithar counter
                 jovial_corruptithar_counter ++;
             }

@@ -1,6 +1,7 @@
 package mom.beaver.dwayne.items;
 
 import mom.beaver.dwayne.registry.RegisterSounds;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -34,8 +35,9 @@ public class DwayneTheItemJohnson extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
         float pitch = (float)(Math.random() / 2 + 0.75);
 
-        world.playSound(null, BlockPos.ofFloored(playerEntity.getPos()), RegisterSounds.VINE_BOOM_EVENT, SoundCategory.PLAYERS, 1.0F, pitch);
+        world.playSound(null, BlockPos.ofFloored(playerEntity.getPos()), RegisterSounds.VINE_BOOM_EVENT, SoundCategory.PLAYERS, 0.7F, pitch);
 
+        playerEntity.getItemCooldownManager().set(this, 20);
         return TypedActionResult.success(playerEntity.getStackInHand(hand));
     }
 }

@@ -11,6 +11,8 @@ public class RegisterSounds {
 
     public static final Identifier FREDDY_KALAS_QUOTE_ID = new Identifier("dwayne-the-mod-johnson:freddy-kalas");
     public static SoundEvent FREDDY_KALAS_QUOTE_EVENT = SoundEvent.of(FREDDY_KALAS_QUOTE_ID);
+    public static final Identifier EVIL_FREDDY_KALAS_QUOTE_ID = new Identifier("dwayne-the-mod-johnson:evil-freddy-kalas");
+    public static SoundEvent EVIL_FREDDY_KALAS_QUOTE_EVENT = SoundEvent.of(EVIL_FREDDY_KALAS_QUOTE_ID);
 
     public static final Identifier JOVIAL_SONG_ID = new Identifier("dwayne-the-mod-johnson:jovial-song");
     public static SoundEvent JOVIAL_SONG_EVENT = SoundEvent.of(JOVIAL_SONG_ID);
@@ -18,5 +20,6 @@ public class RegisterSounds {
         Registry.register(Registries.SOUND_EVENT, VINE_BOOM_ID, VINE_BOOM_EVENT);
         Registry.register(Registries.SOUND_EVENT, JOVIAL_SONG_ID, JOVIAL_SONG_EVENT);
         Registry.register(Registries.SOUND_EVENT, FREDDY_KALAS_QUOTE_ID, FREDDY_KALAS_QUOTE_EVENT);
+        Registry.register(Registries.SOUND_EVENT, EVIL_FREDDY_KALAS_QUOTE_ID, EVIL_FREDDY_KALAS_QUOTE_EVENT);
     }
 }
