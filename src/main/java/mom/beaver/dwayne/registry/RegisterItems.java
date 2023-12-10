@@ -2,23 +2,15 @@ package mom.beaver.dwayne.registry;
 
 import mom.beaver.dwayne.DwayneTheModJohnson;
 import mom.beaver.dwayne.items.DwayneTheItemJohnson;
-import mom.beaver.dwayne.items.EvilFreddyKalasItem;
-import mom.beaver.dwayne.items.FreddyKalasItem;
 import mom.beaver.dwayne.items.blocks.DwayneTheBlockJohnson;
-import mom.beaver.dwayne.items.blocks.DwayneTheFlowerJohnson;
-import mom.beaver.dwayne.items.blocks.DwayneThePottedFlowerJohnson;
-import mom.beaver.dwayne.items.blocks.FreddyKalasCorruptithar;
-import mom.beaver.dwayne.items.blocks.blockEntities.FreddyKalasCorruptitharEntity;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowerBlock;
 import net.minecraft.block.FlowerPotBlock;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
@@ -34,20 +26,7 @@ import java.util.Map;
 public class RegisterItems {
 
     public static final Item DWAYNE_THE_ITEM_JOHNSON = new DwayneTheItemJohnson(new FabricItemSettings().rarity(Rarity.UNCOMMON));
-    public static final Item FREDDY_KALAS_ITEM = new FreddyKalasItem(new FabricItemSettings().rarity(Rarity.RARE));
-    public static final Item EVIL_FREDDY_KALAS_ITEM = new EvilFreddyKalasItem(new FabricItemSettings().rarity(Rarity.EPIC).fireproof());
-
     public static final DwayneTheBlockJohnson DWAYNE_THE_BLOCK_JOHNSON = new DwayneTheBlockJohnson(FabricBlockSettings.create().strength(1.5f).requiresTool());
-    public static final FreddyKalasCorruptithar FREDDY_KALAS_CORRUPTITHAR = new FreddyKalasCorruptithar(FabricBlockSettings.create().strength(3.5f));
-//    public static final DwayneTheFlowerJohnson DWAYNE_THE_FLOWER_JOHNSON = new DwayneTheFlowerJohnson(FabricBlockSettings.copyOf(Blocks.POPPY).strength(0.0F).nonOpaque());
-//    public static final BlockItem DWAYNE_THE_POTTED_JOHNSON = new BlockItem(DwayneThePottedFlowerJohnson.POTTED_DWAYNE, new Item.Settings());
-
-
-    public static final BlockEntityType<FreddyKalasCorruptitharEntity> FREDDY_KALAS_CORRUPTITHAR_ENTITY = Registry.register(
-            Registries.BLOCK_ENTITY_TYPE,
-            new Identifier(DwayneTheModJohnson.MOD_ID, "freddy_kalas_corruptithar_entity"),
-            FabricBlockEntityTypeBuilder.create(FreddyKalasCorruptitharEntity::new, FREDDY_KALAS_CORRUPTITHAR).build()
-    );
 
     public static Map<String, Item> block_items = new HashMap<>();
 
@@ -69,15 +48,6 @@ public class RegisterItems {
                 DWAYNE_THE_FLOWER_JOHNSON
         };
 
-        Item[] freddy_group_entries = {
-                registerItem("freddy_kalas_item", FREDDY_KALAS_ITEM),
-                registerItem("evil_freddy_kalas_item", EVIL_FREDDY_KALAS_ITEM),
-                registerItemAndBlock("freddy_kalas_corruptithar", FREDDY_KALAS_CORRUPTITHAR, new FabricItemSettings().rarity(Rarity.EPIC))
-        };
-
-        // register fuel
-//        FuelRegistry.INSTANCE.add(BEAVER_FUEL, 1);
-
 
 
         Registry.register(Registries.ITEM_GROUP, new Identifier(DwayneTheModJohnson.MOD_ID, "dwayne_group"),
@@ -86,17 +56,6 @@ public class RegisterItems {
                         .displayName(Text.translatable("Dwayne Johnson"))
                         .entries((context, entries) -> {
                             for (Item item : dwayne_group_entries) {
-                                entries.add(item);
-                            }
-                        }).build()
-        );
-
-        Registry.register(Registries.ITEM_GROUP, new Identifier(DwayneTheModJohnson.MOD_ID, "freddy_group"),
-                FabricItemGroup.builder()
-                        .icon(() -> new ItemStack(FREDDY_KALAS_CORRUPTITHAR))
-                        .displayName(Text.translatable("Freddy Kalas"))
-                        .entries((context, entries) -> {
-                            for (Item item : freddy_group_entries) {
                                 entries.add(item);
                             }
                         }).build()

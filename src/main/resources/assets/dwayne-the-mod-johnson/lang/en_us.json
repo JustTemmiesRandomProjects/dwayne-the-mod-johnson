@@ -1,24 +1,6 @@
 {
   "item.dwayne-the-mod-johnson.dwayne_the_item_johnson": "Dwayne the Item Johnson",
-  "item.dwayne-the-mod-johnson.freddy_kalas_item": "Freddy Kalas Fragment",
-  "item.dwayne-the-mod-johnson.evil_freddy_kalas_item": "Eddy Mas",
   "item.temmies-mod.dwayne_the_item_johnson.tooltip": "*boom*",
-
-  "item.minecraft.potion.effect.jovial_potion":  "Potion of Jovial",
-  "item.minecraft.potion.effect.jovial_potion_1":  "Potion of Jovial +1",
-  "item.minecraft.potion.effect.jovial_potion_2":  "Potion of Jovial +2",
-  "item.minecraft.potion.effect.jovial_potion_-1":  "Potion of Jovial -1",
-  "item.minecraft.potion.effect.jovial_potion_-2":  "Potion of Jovial -2",
-  "item.minecraft.splash_potion.effect.jovial_potion":  "Splash Potion of Jovial",
-  "item.minecraft.splash_potion.effect.jovial_potion_1":  "Splash Potion of Jovial +1",
-  "item.minecraft.splash_potion.effect.jovial_potion_2":  "Splash Potion of Jovial +2",
-  "item.minecraft.splash_potion.effect.jovial_potion_-1":  "Splash Potion of Jovial -1",
-  "item.minecraft.splash_potion.effect.jovial_potion_-2":  "Splash Potion of Jovial -2",
-  "item.minecraft.lingering_potion.effect.jovial_potion":  "Buggy Item, don't use",
-  "item.minecraft.lingering_potion.effect.jovial_potion_1":  "Buggy Item, don't use",
-  "item.minecraft.lingering_potion.effect.jovial_potion_2":  "Buggy Item, don't use",
-  "item.minecraft.lingering_potion.effect.jovial_potion_-1":  "Buggy Item, don't use",
-  "item.minecraft.lingering_potion.effect.jovial_potion_-2":  "Buggy Item, don't use",
 
   "item.minecraft.potion.effect.dwayne_the_potion_johnson":  "Dwayne the Potion Johnson",
   "item.minecraft.potion.effect.dwayne_the_potion_johnson_strong":  "Dwayne the Potion Johnson",
@@ -32,12 +14,6 @@
 
   "block.dwayne-the-mod-johnson.dwayne_the_block_johnson": "Dwayne the Block Johnson",
   "block.dwayne-the-mod-johnson.dwayne_the_flower_johnson": "Dwayne the Flower Johnson",
-  "block.dwayne-the-mod-johnson.freddy_kalas_corruptithar": "Freddy Kalas Corruptithar",
 
-  "subtitles.dwayne-the-mod-johnson.vine-boom": "Pass deg",
-  "subtitles.dwayne-the-mod-johnson.jovial-song": "Vennlig, Munter og Omgjengelig",
-  "subtitles.dwayne-the-mod-johnson.freddy-kalas":  "Freddy Kalas",
-  "subtitles.dwayne-the-mod-johnson.evil-freddy-kalas":  "F̶̨͉͈̔̋̏̽̍̕͘r̴͍̱͓̪̹͔͐͛̂̋̏e̵͇̘͍̳̫͑̈d̴̜͓̹̆̍̈́͐̓͑̍̃͝d̸͚̮̽̕y̵̡̨̩̭͎̬̺͙͉̹̿̋ ̷̰̜̂͆͗͑͑͊̍Ķ̶̽́͑͘̚̚͝á̸̛̟͉̲̰͖̙̠̍̀̾͆̕͘͠͝ḽ̶͖̻̝̣̼͈͎͚̿à̶̼̻̩̞̗͈̾͂́s̶̮͓͔͚̦̈͛̐̈͘",
-
-  "effect.dwayne-the-mod-johnson.jovial": "Jovial"
+  "subtitles.dwayne-the-mod-johnson.vine-boom": "Pass deg"
 }

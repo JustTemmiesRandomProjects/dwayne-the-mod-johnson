@@ -8,9 +8,6 @@ public class RegisterOnWorldLeave {
         // reset the jovial ticks played counter to 0 whenever leaving a server
         ClientPlayConnectionEvents.DISCONNECT.register(((handler, client) -> {
             DwayneTheModJohnson.LOGGER.info("Disconnecting from server...");
-            client.execute(() -> {
-                DwayneTheModJohnson.JOVIAL_TICKS_PLAYED = 0;
-            });
         }));
     }
 }

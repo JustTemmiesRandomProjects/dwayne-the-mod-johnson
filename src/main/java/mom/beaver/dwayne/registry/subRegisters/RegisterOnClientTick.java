@@ -15,21 +15,6 @@ import java.util.UUID;
 public class RegisterOnClientTick {
 
     public static void register() {
-        ClientTickEvents.START_CLIENT_TICK.register((client) -> {
-            UUID uuid = client.getSession().getUuidOrNull();
-            if (uuid != null && client.world != null) {
-                PlayerEntity player = client.world.getPlayerByUuid(uuid);
-                if ( player == null ) {
-                    return;
-                }
 
-                StatusEffectInstance effectInstance = player.getStatusEffect(RegisterStatusEffects.JOVIAL);
-
-                if (effectInstance == null) {
-                    MinecraftClient.getInstance().getSoundManager().stopSounds(RegisterSounds.JOVIAL_SONG_ID, SoundCategory.MASTER);
-                    DwayneTheModJohnson.JOVIAL_TICKS_PLAYED = -1;
-                }
-            }
-        });
     }
 }
